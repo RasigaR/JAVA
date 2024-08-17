@@ -1,17 +1,30 @@
-package Aug02;
-import java.util.Arrays;
+package Aug12;
+import java.util.HashMap;
+import java.util.Map;
 public class Sort {
-	 public static void main(String[] args) {
-	        int a[]= {5,3,1,8,9}; 
-	        //numbers in ascending output : 1 3 5 8 9
-	        
-	        Arrays.sort(a);
-	        for(int i=0;i<a.length;i++) {
-	        
-	        System.out.println(a[i]);
+	 public char maxOccurringChar(String str) {
+	        Map<Character, Integer> charCountMap = new HashMap<>();
+	        int maxCount = 0;
+	        char maxChar = '\0';  // null character initialization
+
+	        // Count occurrences of each character
+	        for (char ch : str.toCharArray()) {
+	            charCountMap.put(ch, charCountMap.getOrDefault(ch, 0) + 1);
+	            
+	            // Update maxChar if current character has higher count or first in case of a tie
+	            if (charCountMap.get(ch) > maxCount) {
+	                maxCount = charCountMap.get(ch);
+	                maxChar = ch;
+	            } 
 	        }
-	       System.out.println("Second smallest element is "+a[1]);
-	       System.out.println("Second largest "+a[a.length-2]);
+	        
+	        return maxChar;
 	    }
-	
+
+	    public static void main(String[] args) {
+	        Sort sort = new Sort();
+	        String str = "DoSelect";
+	        System.out.println(sort.maxOccurringChar(str));  // Output should be 'e'
+	    }
+
 }
