@@ -1,17 +1,23 @@
-package Aug12;
+package Aug19;
+class MyClass extends Thread{
+	public void run() {
+		System.out.println("Run method called "+Thread.currentThread());
+	}
+}
 
 public class MainApp {
 	public static void main(String[] args) {
+		System.out.println("Main Tread "+Thread.currentThread());
+		MyClass obj=new MyClass();
+		obj.start(); //thread 0
+		obj.setName("First Thread");
 		
-		int a=12,b=0,c=0;
-        System.out.println("Before division ");
-        try {
-        c=a/b;
-        }catch(ArithmeticException e) {
-        	//System.out.println(e);
-        	e.printStackTrace();
-        }
-        System.out.println("After Division "+c);
+		
+		MyClass obj1=new MyClass();
+		obj1.start(); //thread 1
+		obj1.setName("Second Thread");
+		//obj.start(); //can be started only once
+		//obj.run();
 	}
 
 }
